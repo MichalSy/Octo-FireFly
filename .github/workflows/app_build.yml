@@ -21,9 +21,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Set current date as env variable
-      run: echo "APP_VERSION=${{ github.run_number }}" >> $GITHUB_ENV
+      run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
     - name: Echo current date
-      run: echo $APP_VERSION
+      run: echo $GITHUB_SHA_SHORT
 
     - name: Checkout 
       uses: actions/checkout@main
