@@ -38,7 +38,7 @@ jobs:
         dotnet publish -c Release -o '${{ github.workspace }}/App' 
 
     - name: Create Zip
-      run: zip -r "${{ github.workspace }}/octo-firefly-app-${{ env.APP_VERSION }}.zip" "${{ github.workspace }}/App/wwwroot/*.*"
+      run: zip -jr "${{ github.workspace }}/octo-firefly-app-${{ env.APP_VERSION }}.zip" "${{ github.workspace }}/App/wwwroot/*.*"
 
     - name: Create Release
       id: create_release
