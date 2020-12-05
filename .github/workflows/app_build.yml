@@ -1,0 +1,41 @@
+name: App-Build
+
+on:
+  push:
+    branches: [ main ]
+    paths: 
+        - "src/**"
+        - ".github/workflows/app_build.yml"
+  pull_request:
+    branches: [ main ]
+    paths: 
+        - "src/**"
+        - ".github/workflows/app_build.yml"
+
+defaults:
+  run:
+    working-directory: "src/Octo-FireFly.App/"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout 
+      uses: actions/checkout@main
+
+    - name: Install Dotnet 
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '5.0'
+
+    - name: dotnet build and publish
+      run: |
+        dotnet restore
+        dotnet build --configuration Release
+        dotnet publish -c Release -o './App' 
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: octo-firefly-app-${GITHUB_SHA}.zip
+        path: ./App/wwwroot
