@@ -33,9 +33,9 @@ jobs:
       run: |
         dotnet restore
         dotnet build --configuration Release
-        dotnet publish -c Release -o '${GITHUB_WORKSPACE}/App' 
+        dotnet publish -c Release -o '${{ github.workspace }}/App' 
 
     - uses: actions/upload-artifact@v2
       with:
-        name: octo-firefly-app-${GITHUB_SHA}.zip
-        path: '${GITHUB_WORKSPACE}/App/wwwroot'
+        name: octo-firefly-app-${{ github.sha }}.zip
+        path: '${{ github.workspace }}/App/wwwroot'
