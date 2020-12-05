@@ -20,14 +20,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout 
-      uses: actions/checkout@main
-
     - name: Set current date as env variable
       run: echo "asd"
       
     - name: Echo current date
       run: echo $APP_VERSION
+
+    - name: Checkout 
+      uses: actions/checkout@main
 
     - name: Install Dotnet 
       uses: actions/setup-dotnet@v1
