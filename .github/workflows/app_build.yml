@@ -20,15 +20,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Set current date as env variable
-      run: |
-        echo 'blubb'
-        echo "123"
-    - name: Echo current date
-      run: echo $APP_VERSION
-
     - name: Checkout 
       uses: actions/checkout@main
+
+    - name: Set current date as env variable
+      run: echo "asd"
+      
+    - name: Echo current date
+      run: echo $APP_VERSION
 
     - name: Install Dotnet 
       uses: actions/setup-dotnet@v1
