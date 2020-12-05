@@ -31,9 +31,6 @@ jobs:
     - name: Set current date as env variable
       run: echo "APP_VERSION=$(date +'%y.%m.%d')-${{ github.run_number }}" >> $GITHUB_ENV
 
-    - name: Echo current date
-      run: echo $APP_VERSION
-
     - name: dotnet build and publish
       run: |
         dotnet restore
@@ -43,21 +40,16 @@ jobs:
     - name: Create Zip
       run: zip -r "${{ github.workspace }}/octo-firefly-app-${{ env.APP_VERSION }}.zip" "${{ github.workspace }}/App/wwwroot"
 
-    - uses: actions/upload-artifact@v2
-      with:
-        name: 'BUILD_octo-firefly-app-${{ env.APP_VERSION }}.zip'
-        path: '${{ github.workspace }}/octo-firefly-app-${{ env.APP_VERSION }}.zip'
-
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: $APP_VERSION
-        release_name: Release $APP_VERSION
+        tag_name: ${{ env.APP_VERSION }}
+        release_name: Release ${{ env.APP_VERSION }}
         draft: false
-        prerelease: true
+        prerelease: false
 
     - name: Upload Release Asset
       id: upload-release-asset 
