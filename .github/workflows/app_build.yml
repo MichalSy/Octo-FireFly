@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Set current date as env variable
-      run: echo "::set-env name=APP_VERSION::1.2.3-${{ github.run_number }}"
+      run: echo "hello world"
     - name: Echo current date
       run: echo $APP_VERSION
 
