@@ -21,9 +21,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Set current date as env variable
-      run: echo "action_state=yellow" >> $GITHUB_ENV
+      run: echo "::set-env name=APP_VERSION::1.2.3-${{ github.run_number }}"
     - name: Echo current date
-      run: echo $action_state
+      run: echo $APP_VERSION
 
     - name: Checkout 
       uses: actions/checkout@main
