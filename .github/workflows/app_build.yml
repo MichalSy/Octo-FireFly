@@ -29,8 +29,8 @@ jobs:
         dotnet-version: '5.0'
 
     - name: Set current date as env variable
-      run: echo "APP_VERSION::$(date +'%y.%m.%d')-${{ github.run_number }}" >> $GITHUB_ENV
-      
+      run: echo "APP_VERSION=$(date +'%y.%m.%d')-${{ github.run_number }}" >> $GITHUB_ENV
+
     - name: Echo current date
       run: echo $APP_VERSION
 
