@@ -21,7 +21,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Set current date as env variable
-      run: echo "hello world"
+      run: |
+        echo 'blubb'
+        echo "123"
     - name: Echo current date
       run: echo $APP_VERSION
 
