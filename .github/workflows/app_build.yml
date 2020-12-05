@@ -19,11 +19,11 @@ defaults:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      - APP_VERSION: $(date +'%y.%m.%d')-${{ github.run_number }}
     steps:
+    - name: Set current date as env variable
+      run: echo "APP_VERSION=$(date + '%y.%m.%d')-${{ github.run_number }}" >> $GITHUB_ENV
     - name: Echo current date
-      run: echo ${APP_VERSION}
+      run: echo $APP_VERSION
 
     - name: Checkout 
       uses: actions/checkout@main
