@@ -33,13 +33,14 @@ jobs:
 
     - name: dotnet build and publish
       run: |
+        cd ${{ github.workspace }}/src/Octo-FireFly.Server
         dotnet restore
         dotnet build --configuration Release
         dotnet publish -c Release -o '${{ github.workspace }}/App' 
 
     - name: Create Zip
       run: |
-        cd ${{ github.workspace }}/App/wwwroot
+        cd ${{ github.workspace }}/App
         zip -r "${{ github.workspace }}/octo-firefly-app-${{ env.APP_VERSION }}.zip" .
 
     - name: Create Release
