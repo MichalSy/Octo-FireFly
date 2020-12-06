@@ -43,8 +43,8 @@ namespace Octo_FireFly.Updater
                 {
                     StartInfo = new ProcessStartInfo
                     {
-                        FileName = "/bin/bash",
-                        Arguments = $"-c \"reboot\"",
+                        FileName = "reboot",
+                        //Arguments = $"-c \"sudo reboot\"",
                         RedirectStandardOutput = false,
                         UseShellExecute = false,
                         CreateNoWindow = true,
