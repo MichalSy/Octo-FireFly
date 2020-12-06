@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Octo_FireFly.App.Server.Manager.AutoUpdate;
 using System.Linq;
 
 namespace Octo_FireFly.App.Server
@@ -22,9 +23,16 @@ namespace Octo_FireFly.App.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddHttpClient();
+            services.AddSingleton<IAutoUpdater, AutoUpdater>();
+
+            services.AddHostedService(sp => (AutoUpdater)sp.GetService<IAutoUpdater>());
+
+            //ServiceProvider sp = services.BuildServiceProvider();
+            //var fooService = sp.GetService<IAutoUpdater>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

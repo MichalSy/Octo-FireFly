@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Octo-FireFly.Updater": {
+      "commandName": "Project",
+      "commandLineArgs": "https://github.com/MichalSy/Octo-FireFly/releases/download/20.12.06-29/octo-firefly-app-20.12.06-29.zip",
+      "workingDirectory": "../Octo-FireFly.Server/bin/Debug/net5.0"
+    }
+  }
+}

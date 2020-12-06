@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Octo_FireFly.App.Server.Manager.AutoUpdate;
 using Octo_FireFly.App.Shared;
 using Octo_FireFly.Server.Shared;
 using System;
@@ -19,15 +20,19 @@ namespace Octo_FireFly.App.Server.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IAutoUpdater _autoUpdater;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IAutoUpdater autoUpdater)
         {
-            _logger = logger;
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _autoUpdater = autoUpdater ?? throw new ArgumentNullException(nameof(autoUpdater));
         }
 
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
+            _autoUpdater.CheckForUpdateAsync();
+
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
@@ -35,7 +40,7 @@ namespace Octo_FireFly.App.Server.Controllers
                 TemperatureC = rng.Next(-20, 55),
                 Summary = Summaries[rng.Next(Summaries.Length)]
             })
-            .ToArray();
+            .ToArray();            
         }
     }
 }
