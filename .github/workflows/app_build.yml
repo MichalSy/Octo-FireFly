@@ -35,14 +35,12 @@ jobs:
       run: |
         cd ${{ github.workspace }}/src/Octo-FireFly.Updater
         dotnet restore
-        dotnet build --configuration Release
         dotnet publish -c Release -o '${{ github.workspace }}/App' 
 
     - name: Build Server
       run: |
         cd ${{ github.workspace }}/src/Octo-FireFly.Server
         dotnet restore
-        dotnet build --configuration Release
         dotnet publish -c Release -o '${{ github.workspace }}/App' 
 
     - name: Create Zip

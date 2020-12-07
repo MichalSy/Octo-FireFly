@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Octo_FireFly.App.Server.Manager.AutoUpdate;
+using System.IO.Compression;
 using System.Linq;
 
 namespace Octo_FireFly.App.Server
@@ -33,6 +34,18 @@ namespace Octo_FireFly.App.Server
 
             services.AddCors();
 
+            services.Configure<BrotliCompressionProviderOptions>(options =>
+            {
+                options.Level = CompressionLevel.Fastest;
+            });
+            services.AddResponseCompression(options =>
+            {
+                options.Providers.Add<BrotliCompressionProvider>();
+                options.MimeTypes =
+                    ResponseCompressionDefaults.MimeTypes.Concat(
+                        new[] { "image/svg+xml" });
+            });
+
             //ServiceProvider sp = services.BuildServiceProvider();
             //var fooService = sp.GetService<IAutoUpdater>();
         }
@@ -54,6 +67,8 @@ namespace Octo_FireFly.App.Server
 
             //app.UseHttpsRedirection();
             app.UseBlazorFrameworkFiles();
+            app.UseResponseCompression();
+
             app.UseStaticFiles();
 
             app.UseRouting();
