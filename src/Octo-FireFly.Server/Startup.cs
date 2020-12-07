@@ -31,6 +31,8 @@ namespace Octo_FireFly.App.Server
 
             services.AddHostedService(sp => (AutoUpdater)sp.GetService<IAutoUpdater>());
 
+            services.AddCors();
+
             //ServiceProvider sp = services.BuildServiceProvider();
             //var fooService = sp.GetService<IAutoUpdater>();
         }
@@ -55,6 +57,10 @@ namespace Octo_FireFly.App.Server
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseCors(
+                options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+            );
 
             app.UseEndpoints(endpoints =>
             {

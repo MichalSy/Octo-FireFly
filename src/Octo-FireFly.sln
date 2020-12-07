@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Octo-FireFly.App", "Octo-Fi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Octo-FireFly.Server.Shared", "Octo-FireFly.Server.Shared\Octo-FireFly.Server.Shared.csproj", "{1189E32A-4074-4005-8F7A-41BC4DCD67EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Octo-FireFly.Updater", "Octo-FireFly.Updater\Octo-FireFly.Updater.csproj", "{0DDFB5C6-370F-43BE-ACB6-BBFBAE099560}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Octo-FireFly.Updater", "Octo-FireFly.Updater\Octo-FireFly.Updater.csproj", "{0DDFB5C6-370F-43BE-ACB6-BBFBAE099560}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

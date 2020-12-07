@@ -3,6 +3,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Octo_FireFly.App.Manager.OctoPrint;
+using Octo_FireFly.App.Pages.Counter;
+using Octo_FireFly.App.Pages.Dashboard.Models;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -20,10 +22,12 @@ namespace Octo_FireFly.App
 
             builder.Services.AddSingleton(sp =>
             {
-                return new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) };
+                return new HttpClient { BaseAddress = new Uri("http://localhost:8080") };
             });
 
             builder.Services.AddSingleton<IOctoPrintConnector, OctoPrintConnector>();
+            builder.Services.AddSingleton<DashboardViewModel>();
+            builder.Services.AddSingleton<CounterViewModel>();
 
             await builder.Build().RunAsync();
         }

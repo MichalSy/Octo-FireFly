@@ -46,7 +46,6 @@ namespace Octo_FireFly.App.Manager.OctoPrint
             _logger.LogInformation($"Data: {data.SessionToken}");
 
 
-
             _websocketConnection = new ClientWebSocket();
             var uri = new Uri($"ws://{host}/sockjs/websocket");
             var cts = new CancellationTokenSource();
@@ -63,7 +62,7 @@ namespace Octo_FireFly.App.Manager.OctoPrint
 
             var throttleObject = new
             {
-                throttle = 10
+                throttle = 1
             };
             message = JsonSerializer.Serialize(throttleObject);
             await _websocketConnection.SendAsync(Encoding.UTF8.GetBytes(message), WebSocketMessageType.Text, true, cts.Token);
@@ -95,7 +94,7 @@ namespace Octo_FireFly.App.Manager.OctoPrint
                         var lastState = printerStatus.Current?.TemperatureStatus?.OrderByDescending(t => t.UnixTime).FirstOrDefault();
                         if (lastState != null)
                         {
-                            _logger.LogInformation($"Data: {lastState.Tool0.Actual} / {lastState.Tool0.Target} || {lastState.Bed.Actual} / {lastState.Bed.Target} ");
+                            //_logger.LogInformation($"Data: {lastState.Tool0.Actual} / {lastState.Tool0.Target} || {lastState.Bed.Actual} / {lastState.Bed.Target} ");
                             OnTemperatureChanged?.Invoke(this, lastState);
                         }
                     }

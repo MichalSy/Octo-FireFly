@@ -1,0 +1,13 @@
+﻿@using Octo_FireFly.App.Pages.Dashboard.Models 
+@inherits PageBase<DashboardViewModel>
+@page "/"
+@page "/dashboard"
+
+<h1>Dashboard</h1>
+
+<div>
+    Tool: @ViewModel.CurrentToolActual / @ViewModel.CurrentToolTarget
+</div>
+<div>
+    Bed: @ViewModel.CurrentBedActual / @ViewModel.CurrentBedTarget
+</div>

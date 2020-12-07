@@ -9,14 +9,15 @@
     </NotFound>
 </Router>
 
+
 @code
 {
     [Inject]
     public IOctoPrintConnector OctoPrintConnector { get; set; }
 
+
     protected override async Task OnInitializedAsync()
     {
         await OctoPrintConnector.ConnectAsync();
-        //return base.OnInitializedAsync();
     }
 } 
