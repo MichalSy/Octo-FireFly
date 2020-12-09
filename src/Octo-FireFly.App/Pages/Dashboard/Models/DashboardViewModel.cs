@@ -2,6 +2,7 @@
 using Octo_FireFly.App.Common;
 using Octo_FireFly.App.Manager.OctoPrint;
 using Octo_FireFly.App.Manager.OctoPrint.Models;
+using Octo_FireFly.App.Manager.Temperature;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace Octo_FireFly.App.Pages.Dashboard.Models
     public class DashboardViewModel : ViewModelBase
     {
         private readonly ILogger<DashboardViewModel> _logger;
-        private readonly IOctoPrintConnector _octoPrintConnector;
+        private readonly ITemperatureManager _temperatureManager;
 
         public decimal CurrentToolActual { get; set; }
 
@@ -21,20 +22,20 @@ namespace Octo_FireFly.App.Pages.Dashboard.Models
         public decimal CurrentBedActual { get; set; }
         public decimal CurrentBedTarget { get; set; }
 
-        public DashboardViewModel(ILogger<DashboardViewModel> logger, IOctoPrintConnector octoPrintConnector)
+        public DashboardViewModel(ILogger<DashboardViewModel> logger, ITemperatureManager temperatureManager)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _octoPrintConnector = octoPrintConnector ?? throw new ArgumentNullException(nameof(octoPrintConnector));
+            _temperatureManager = temperatureManager ?? throw new ArgumentNullException(nameof(temperatureManager));
         }
 
-        private void OnTemperatureChangedExecute(object sender, TemperatureStatusDTO e)
+        private void OnTemperatureChangedExecute(object sender, EventArgs e)
         {
-            CurrentToolActual = e.Tool0.Actual;
-            CurrentToolTarget = e.Tool0.Target;
-            CurrentBedActual = e.Bed.Actual;
-            CurrentBedTarget = e.Bed.Target;
+            CurrentToolActual = _temperatureManager.CurrentToolActual;
+            CurrentToolTarget = _temperatureManager.CurrentToolTarget;
+            CurrentBedActual = _temperatureManager.CurrentBedActual;
+            CurrentBedTarget = _temperatureManager.CurrentBedTarget;
 
-            _logger.LogInformation(e.Tool0.Actual.ToString());
+            _logger.LogInformation($"{_temperatureManager.CurrentToolActual}");
 
             OnUIChanged?.Invoke();
         }
@@ -42,13 +43,13 @@ namespace Octo_FireFly.App.Pages.Dashboard.Models
         public override void OnPageShown()
         {
             _logger.LogInformation("SHOWN");
-            _octoPrintConnector.OnTemperatureChanged += OnTemperatureChangedExecute;
+            _temperatureManager.OnTemperatureChanged += OnTemperatureChangedExecute;
         }
 
         public override void OnPageHide()
         {
             _logger.LogInformation("HIDE");
-            _octoPrintConnector.OnTemperatureChanged -= OnTemperatureChangedExecute;
+            _temperatureManager.OnTemperatureChanged -= OnTemperatureChangedExecute;
         }
     }
 }

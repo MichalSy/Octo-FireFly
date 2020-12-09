@@ -9,13 +9,34 @@
 
     <ItemGroup>
         <PackageReference Include="ChartJs.Blazor.Fork" Version="2.0.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.0" PrivateAssets="all" />
+        <PackageReference Include="LibSassBuilder" Version="1.4.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.1" PrivateAssets="all" />
         <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\Octo-FireFly.Server.Shared\Octo-FireFly.Server.Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- extends watching group to include *.js files -->
+        <Watch Include="**\*.js;**\*.scss;wwwroot\**\*.scss" Exclude="**\*.css;node_modules\**\*;**\*.js.map;obj\**\*;bin\**\*" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="wwwroot\css\app.scss" />
+      <Content Remove="wwwroot\css\_app-variables.scss" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Watch Remove="wwwroot\css\app.scss" />
+      <Watch Remove="wwwroot\css\_app-variables.scss" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="wwwroot\css\_app-variables.scss" />
+      <None Include="wwwroot\css\app.scss" />
     </ItemGroup>
 
 </Project>

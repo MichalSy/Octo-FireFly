@@ -1,0 +1,11 @@
+﻿
+$primary-color: color("blue-grey", "darken-3") !default;
+
+/*used for buttons*/
+$secondary-color: color("blue", "darken-3") !default;
+
+
+body {
+    background-color: color("grey", "darken-4");
+    color: rgba(255,255,255, 0.9);
+}

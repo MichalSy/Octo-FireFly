@@ -1,11 +1,10 @@
 ﻿@inherits PageBase<CounterViewModel>
 @page "/counter"
 
-<h1>Counter</h1>
 
 <p>Current count: @ViewModel.CurrentCount</p>
 
-<button class="btn btn-primary" @onclick="ViewModel.IncrementCount">Click me</button>
+<button class="waves-effect waves-light btn" @onclick="ViewModel.IncrementCount">Click me</button>
 
 <Chart Config="_config" @ref="_chart"></Chart>
 
