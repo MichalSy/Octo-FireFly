@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using Octo_FireFly.App.Manager.OctoPrint;
 using Octo_FireFly.App.Manager.Temperature;
 using Octo_FireFly.App.Pages.Counter;
-using Octo_FireFly.App.Pages.Dashboard.Models;
+using Octo_FireFly.App.Pages.Print.Models;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -29,7 +29,7 @@ namespace Octo_FireFly.App
             builder.Services.AddSingleton<IOctoPrintConnector, OctoPrintConnector>();
             builder.Services.AddSingleton<ITemperatureManager, TemperatureManager>();
 
-            builder.Services.AddSingleton<DashboardViewModel>();
+            builder.Services.AddSingleton<PrintPageViewModel>();
             builder.Services.AddSingleton<CounterViewModel>();
 
             await builder.Build().RunAsync();

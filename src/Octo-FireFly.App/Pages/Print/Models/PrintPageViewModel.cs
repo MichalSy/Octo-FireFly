@@ -1,18 +1,13 @@
 ﻿using Microsoft.Extensions.Logging;
 using Octo_FireFly.App.Common;
-using Octo_FireFly.App.Manager.OctoPrint;
-using Octo_FireFly.App.Manager.OctoPrint.Models;
 using Octo_FireFly.App.Manager.Temperature;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace Octo_FireFly.App.Pages.Dashboard.Models
+namespace Octo_FireFly.App.Pages.Print.Models
 {
-    public class DashboardViewModel : ViewModelBase
+    public class PrintPageViewModel : ViewModelBase
     {
-        private readonly ILogger<DashboardViewModel> _logger;
+        private readonly ILogger<PrintPageViewModel> _logger;
         private readonly ITemperatureManager _temperatureManager;
 
         public decimal CurrentToolActual { get; set; }
@@ -22,7 +17,7 @@ namespace Octo_FireFly.App.Pages.Dashboard.Models
         public decimal CurrentBedActual { get; set; }
         public decimal CurrentBedTarget { get; set; }
 
-        public DashboardViewModel(ILogger<DashboardViewModel> logger, ITemperatureManager temperatureManager)
+        public PrintPageViewModel(ILogger<PrintPageViewModel> logger, ITemperatureManager temperatureManager)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _temperatureManager = temperatureManager ?? throw new ArgumentNullException(nameof(temperatureManager));
