@@ -2,11 +2,14 @@
 @page "/counter"
 
 
-<p>Current count: @ViewModel.CurrentCount</p>
+<p>
+    Current count: @ViewModel.CurrentCount
 
-<button class="waves-effect waves-light btn" @onclick="ViewModel.IncrementCount">Click me</button>
-<div><br /><br /><br /><br /><br /><br /><br /><br /><br /></div>
-<button class="" @onclick="ViewModel.IncrementCount">Click me</button>
+    <TouchButton Title="Click Me" OnClick="ViewModel.IncrementCount" />
+</p>
+
+<div><br /></div>
+
 
 <Chart Config="_config" @ref="_chart"></Chart>
 
@@ -15,6 +18,8 @@
 <button @onclick="RemoveDataset">Remove Dataset</button>
 <button @onclick="AddData">Add Data</button>
 <button @onclick="RemoveData">Remove Data</button>
+
+
 
 
 @code {
