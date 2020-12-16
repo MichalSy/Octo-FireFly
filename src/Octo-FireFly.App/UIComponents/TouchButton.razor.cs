@@ -17,6 +17,9 @@ namespace Octo_FireFly.App.UIComponents
         public string Title { get; set; }
 
         [Parameter]
+        public string Class { get; set; }
+
+        [Parameter]
         public EventCallback<MouseEventArgs> OnClick { get; set; }
 
         public ElementReference _clickSoundReference;

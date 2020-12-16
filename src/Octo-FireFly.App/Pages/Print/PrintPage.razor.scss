@@ -1,0 +1,31 @@
+﻿.print-progress {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    padding: 0.5rem;
+}
+
+.print-progress .row {
+    margin-bottom: 0;
+}
+
+.print-progress .progress {
+    height: 36px;
+    margin: 0;
+    background-color: dimgray;
+}
+
+.print-progress .progress span {
+    position: absolute;
+    padding-left: 1rem;
+    line-height: 36px;
+    font-weight: 500;
+}
+
+.print-progress .progress .determinate {
+    text-align: center;
+}
+
+.print-progress ::deep button {
+    width: 95%;
+}
